@@ -1,0 +1,6 @@
+@FabricWebApi_HostAddress = http://localhost:5286
+
+GET {{FabricWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
