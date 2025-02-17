@@ -55,9 +55,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
+// Generate initial data
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
-_ = scope.ServiceProvider.GetRequiredService<FabricWebApiDbContext>(); // TODO check if works without
 DataGenerator.Initialize(services);
 
 app.Run();

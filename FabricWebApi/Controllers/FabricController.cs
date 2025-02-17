@@ -1,9 +1,12 @@
 ﻿using FabricWebApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FabricWebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class FabricController : ControllerBase
     {
@@ -15,9 +18,10 @@ namespace FabricWebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult ExecuteCommand()
+        public IActionResult CallFabric([FromBody] FabricRequest request)
         {
-            var output = _fabricService.ExecuteCommand();
+            var username = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+            var output = _fabricService.CallFabric(username, request.Request);
             return Ok(output);
         }
     }

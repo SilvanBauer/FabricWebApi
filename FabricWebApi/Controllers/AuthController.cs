@@ -31,7 +31,7 @@ namespace FabricWebApi.Controllers
 
             var administrators = _configuration.GetSection("Administrators").Get<string[]>() ?? Array.Empty<string>();
             var token = GenerateAccessToken(model.Username, administrators.Contains(model.Username));
-            return Ok(new { AccessToken = new JwtSecurityTokenHandler().WriteToken(token) });
+            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
         [HttpPost("Register")]

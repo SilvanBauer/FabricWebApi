@@ -2,6 +2,8 @@
 {
     public interface IFabricService
     {
-        string ExecuteCommand();
+        string CallFabric(string username, string question);
+
+        string GetRecentRequests();
     }
 }
