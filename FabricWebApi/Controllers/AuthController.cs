@@ -37,7 +37,7 @@ namespace FabricWebApi.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] LoginModel model)
         {
-            if (model.Password.Length < 5)
+            if (model.Password.Length < 6)
             {
                 return Unauthorized("You need at least 6 characters in your password");
             }

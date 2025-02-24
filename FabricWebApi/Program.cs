@@ -36,7 +36,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Add inmemory database
-builder.Services.AddDbContext<FabricWebApiDbContext>(options => options.UseInMemoryDatabase("FabricWebApi"));
+builder.Services.AddDbContext<FabricWebApiDbContext>(options => {
+    if (configuration.GetSection("UseInMemory").Get<bool>())
+    {
+        options.UseInMemoryDatabase("FabricWebApi");
+    }
+    else
+    {
+        options.UseSqlServer(configuration.GetConnectionString("FabricWeb"));
+    }
+});
+
+// Add fabric service
 builder.Services.AddScoped<IFabricService, FabricService>();
 
 // Configure the HTTP request pipeline.

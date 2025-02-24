@@ -28,7 +28,7 @@ namespace FabricWebApi.Services
             var processStartInfo = new ProcessStartInfo
             {
                 FileName = isLinux ? "/bin/bash" : "powershell.exe",
-                Arguments = $"{command} {request}",
+                Arguments = $"{command} \"{request}\"",
                 WorkingDirectory = Environment.CurrentDirectory,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,

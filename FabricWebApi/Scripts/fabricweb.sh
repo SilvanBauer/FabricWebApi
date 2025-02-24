@@ -6,7 +6,11 @@ fi
 
 FabricAddress="http://$FabricIp:81"
 
-if [ -z $1 ] || [ $1 = "login" ]; then
+if [ -z $1 ] || [ $1 = "request" ]; then
+	read -p "Enter your request > " FabricRequest
+	curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $FabricToken" -d "{\"request\":\"$FabricRequest\"}" "$FabricAddress/Fabric"
+	echo
+else if [ $1 = "login" ]; then
 	read -p "Enter username > " FabricUsername
 	read -p "Enter password > " FabricPassword
 
@@ -18,13 +22,6 @@ else if [ $1 = "register" ]; then
 
 	FabricResult=`curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"$FabricUsername\", \"password\": \"$FabricPassword\"}" "$FabricAddress/Auth/Register"`
 	echo $FabricResult
-else if [ $1 = "request" ]; then
-	if [ -z $2 ]; then
-		echo "Please enter a request to fabric"
-	else
-		curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $FabricToken" -d "{\"request\":\"$2\"}" "$FabricAddress/Fabric"
-		echo
-	fi
 else if [ $1 = "users" ]; then
 	curl -X GET -H "Authorization: Bearer $FabricToken" "$FabricAddress/Admin/Users"
 	echo
