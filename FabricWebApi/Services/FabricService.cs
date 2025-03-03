@@ -13,7 +13,7 @@ namespace FabricWebApi.Services
             _configuration = configuration;
         }
 
-        public string CallFabric(string username, string request)
+        public string CallFabric(string username, string request, string? pattern)
         {
             // Add to request list containing the last 50 reqeusts
             _recentRequests.Add(new FabricRequestLog(username, request));
@@ -28,7 +28,7 @@ namespace FabricWebApi.Services
             var processStartInfo = new ProcessStartInfo
             {
                 FileName = isLinux ? "/bin/bash" : "powershell.exe",
-                Arguments = $"{command} \"{request}\"",
+                Arguments = pattern != null ? $"{command} \"{request}\" \"{pattern}\"" : $"{command} \"{request}\"",
                 WorkingDirectory = Environment.CurrentDirectory,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,

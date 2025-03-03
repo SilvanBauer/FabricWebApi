@@ -8,17 +8,17 @@ FabricAddress="http://$FabricIp:81"
 
 if [ -z $1 ] || [ $1 = "request" ]; then
 	read -p "Enter your request > " FabricRequest
-	curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $FabricToken" -d "{\"request\":\"$FabricRequest\"}" "$FabricAddress/Fabric"
+	curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $FabricToken" -d "{\"request\":\"$FabricRequest\", \"pattern\": \"$2\"}" "$FabricAddress/Fabric"
 	echo
 else if [ $1 = "login" ]; then
 	read -p "Enter username > " FabricUsername
-	read -p "Enter password > " FabricPassword
+	read -s -p "Enter password > " FabricPassword
 
 	FabricToken=`curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"$FabricUsername\", \"password\": \"$FabricPassword\"}" "$FabricAddress/Auth/Login"`
 	echo "Your token is: $FabricToken"
 else if [ $1 = "register" ]; then
 	read -p "Enter new username > " FabricUsername
-	read -p "Enter new password > " FabricPassword
+	read -s -p "Enter new password > " FabricPassword
 
 	FabricResult=`curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"$FabricUsername\", \"password\": \"$FabricPassword\"}" "$FabricAddress/Auth/Register"`
 	echo $FabricResult

@@ -21,7 +21,7 @@ namespace FabricWebApi.Controllers
         public IActionResult CallFabric([FromBody] FabricRequest request)
         {
             var username = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
-            var output = _fabricService.CallFabric(username, request.Request);
+            var output = _fabricService.CallFabric(username, request.Request, request.Pattern);
             return Ok(output);
         }
     }

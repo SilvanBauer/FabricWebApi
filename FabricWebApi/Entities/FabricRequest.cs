@@ -6,5 +6,7 @@
     public class FabricRequest
     {
         public string Request { get; set; }
+
+        public string? Pattern { get; set; }
     }
 }

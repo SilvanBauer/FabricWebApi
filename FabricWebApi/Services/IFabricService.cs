@@ -2,7 +2,7 @@
 {
     public interface IFabricService
     {
-        string CallFabric(string username, string question);
+        string CallFabric(string username, string question, string? pattern);
 
         string GetRecentRequests();
     }
