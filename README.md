@@ -1,8 +1,8 @@
 # Fabric Web API
-This API was created to be able to host Fabric on Linux. With this API it's possible to host Fabric in the LAN on a Linux x64 server with NGINX. Authentication is done with a JWT token.
+This API was created to be able to host Fabric on Linux. With this you are able to create a web api AI service. Authentication is done with a JWT token.
 
 ## Installation
-This is a quick guide to install the Fabric web API on an Ubuntu server. It's assumed that Fabric has already been downloaded and configured.
+This is a quick guide to install the Fabric web API on an Ubuntu server. It's assumed that Fabric from danielmiessler has already been downloaded and configured.
 
 ### Copying compiled web API to server
 **If not already on the Linux server:** Transfer web API contents to home directory. Please adjust the local path and user name on Linux side. This command should be run in powershell **on your local machine in windows**. Other ways to transfer the API are also possible.
