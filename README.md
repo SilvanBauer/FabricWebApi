@@ -121,8 +121,6 @@ Enable autostart and start the new service.
 
 To be able to call Fabric from the web API you need to get the fabricrequest.sh in the Scripts directory to the server and make sure that the executing user of the service can also execute this file. The location can be configured in the appsettings.json in the web api directory.
 
-To make the linux clients to be able to call the api you should copy the fabricweb.sh to the client and make it executable.
-
 ## Appsettings
 
 There are several things that currently can be configured in the appsettings.json.
