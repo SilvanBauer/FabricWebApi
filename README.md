@@ -131,7 +131,7 @@ JwtSettings | Settings to configure how the JWT tokens are generated
 UseInMemory | Set to true to use in memory database
 ConnectionString | Add your database here if you don't use the in memory one
 Administrators | A string array containing the names of the administrator users
-IsLinux | Currently should always be true and is only used for testing purposes
+IsLinux | Should always be true and is only used for testing purposes
 CommandLin | The path to the fabricrequest.sh file
 CommandWin | Only for testing purposes
 
