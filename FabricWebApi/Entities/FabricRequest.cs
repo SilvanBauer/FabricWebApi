@@ -1,12 +1,10 @@
-﻿namespace FabricWebApi
-{
-    /// <summary>
-    /// A model to contain the question/request as a string can't directly be parsed...
-    /// </summary>
-    public class FabricRequest
-    {
-        public string Request { get; set; }
+﻿namespace FabricWebApi;
 
-        public string? Pattern { get; set; }
-    }
+public class FabricRequest
+{
+    public string Request { get; set; }
+
+    public string? Pattern { get; set; }
+
+    public string? Session { get; set; }
 }

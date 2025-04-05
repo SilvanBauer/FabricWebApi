@@ -1,4 +1,5 @@
 using FabricWebApi;
+using FabricWebApi.Extensions;
 using FabricWebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -41,7 +42,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Add inmemory database
-builder.Services.AddDbContext<FabricWebApiDbContext>(options => {
+builder.Services.AddDbContext<FabricWebApiDbContext>(options =>
+{
     if (configuration.GetSection("UseInMemory").Get<bool>())
     {
         options.UseInMemoryDatabase("FabricWebApi");
@@ -52,7 +54,8 @@ builder.Services.AddDbContext<FabricWebApiDbContext>(options => {
     }
 });
 
-// Add fabric service
+// Add own services
+builder.Services.AddScoped<IBlockedUsersService, BlockedUsersService>();
 builder.Services.AddScoped<IFabricService, FabricService>();
 
 // Configure the HTTP request pipeline.
@@ -69,6 +72,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 });
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseBlockedUsersMiddleware();
 app.MapControllers();
 
 // Generate initial data
