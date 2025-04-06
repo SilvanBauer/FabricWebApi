@@ -29,11 +29,11 @@ Move the published directory to the destination and give the owner rights in cas
 
 Install .NET runtime
 
-`sudo apt-get install -y aspnetcore-runtime-8.0`
+`sudo apt install -y aspnetcore-runtime-8.0`
 
 Install NGINX
 
-`sudo apt install nginx`
+`sudo apt install -y nginx`
 
 Start NGINX
 
@@ -131,6 +131,7 @@ JwtSettings | Settings to configure how the JWT tokens are generated
 UseInMemory | Set to true to use in memory database
 ConnectionString | Add your database here if you don't use the in memory one
 Administrators | A string array containing the names of the administrator users
+StaticUsers | A list of static user json object that will be injected into the db should they not exist yet (use `. ./fabricweb.sh user` to get json)
 IsLinux | Should always be true and is only used for testing purposes
 CommandLin | The path to the fabricrequest.sh file
 CommandWin | Only for testing purposes
@@ -142,9 +143,13 @@ Command | Description
 --- | ---
 . ./fabricweb.sh login | Login with username and password
 . ./fabricweb.sh register | Register a new user with username and password
-. ./fabricweb.sh request \[pattern\] | Call fabric and optionally specify the pattern used. Alternatively you can use `. ./fabricweb.sh`
+. ./fabricweb.sh request \[pattern\] | Call fabric and optionally specify the pattern used. A session can be specified during the command execution. Alternatively you can use `. ./fabricweb.sh`
+. ./fabricweb.sh user | Get user json for current logged in user
 . ./fabricweb.sh users | Admin only function which let's you display the users in the database
 . ./fabricweb.sh recent | Admin only function which let's you display the 50 last requests and the users who made them
+. ./fabricweb.sh sessions | Admin only function to display current fabric sessions
+. ./fabricweb.sh wipesession | Admin only function to wipe a fabric session
+. ./fabricweb.sh block | Admin only function to block a user
+. ./fabricweb.sh unblock | Admin only function to unblock a user
 
 It is also possible to make a youtube summary by pasting a youtube link as the request.
-
