@@ -1,9 +1,12 @@
-﻿namespace FabricWebApi.Services
-{
-    public interface IFabricService
-    {
-        string CallFabric(string username, string question, string? pattern);
+﻿namespace FabricWebApi.Services;
 
-        string GetRecentRequests();
-    }
+public interface IFabricService
+{
+    string AskFabric(string username, string question, string? pattern, string? session);
+
+    string GetSessions();
+
+    void WipeSession(string session);
+
+    string GetRecentRequests();
 }
