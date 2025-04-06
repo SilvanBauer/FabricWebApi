@@ -27,12 +27,12 @@ public class FabricService : IFabricService
 
         // Construct additional arguments for calling fabricrequest.sh
         var fabricCall = $"\"{request}\"";
-        if (session != null)
+        if (!string.IsNullOrWhiteSpace(session))
         {
             // When no pattern is specified "sessiononly" is used as a placeholder
-            fabricCall += $" \"{(pattern != null ? pattern : "sessiononly")}\" \"{_spaceRegex.Replace(username, "_")}-{session}\"";
+            fabricCall += $" \"{(!string.IsNullOrWhiteSpace(pattern) ? pattern : "sessiononly")}\" \"{_spaceRegex.Replace(username, "_")}-{session}\"";
         }
-        else if (pattern != null)
+        else if (!string.IsNullOrWhiteSpace(pattern))
         {
             fabricCall += $" \"{pattern}\"";
         }
